@@ -6,23 +6,22 @@
 
 // See also Process_Folder.py for a version of this code
 // in the Python scripting language.
-
+n=0;
 processFolder(input);
 
 // function to scan folders/subfolders/files to find files with correct suffix
 function processFolder(input) {
 	list = getFileList(input);
 	list = Array.sort(list);
-	print(list.length);
 	for (i = 0; i < list.length; i++) {
 		if(File.isDirectory(input + File.separator + list[i]))
 			processFolder(input + File.separator + list[i]);
-		else if(endsWith(list[i], suffix))
-			processFile(input, output, list[i]);
+		else if(endsWith(list[i], suffix)){n=n+1;
+			processFile(input, output, list[i],n);}
 	}
 }
 
-function processFile(input, output, file) {
+function processFile(input, output, file,index) {
 	// Do the processing here by adding your own code.
 	
 	// Leave the print statements until things work, then remove them.
@@ -35,6 +34,7 @@ function processFile(input, output, file) {
 	//run("Threshold...");
 	run("Set Measurements...", "display area mean standard modal min integrated limit redirect=None decimal=3");
 	run("Measure");	
+	setResult("File Name", index, file);
 	saveAs("Results", output+File.separator +"Results.xls");
 	close("*");
 }
