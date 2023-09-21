@@ -1,12 +1,10 @@
-// Macro template to process multiple images in a folder
+// Process multiple images in a folder
 
 #@ File (label = "Input directory", style = "directory") input
 #@ File (label = "Output directory", style = "directory") output
 #@ String (label = "File suffix", value = ".tif") suffix
 
-// See also Process_Folder.py for a version of this code
-// in the Python scripting language.
-n=0;
+n=0;//counter for file's index
 processFolder(input);
 
 // function to scan folders/subfolders/files to find files with correct suffix
@@ -16,17 +14,17 @@ function processFolder(input) {
 	for (i = 0; i < list.length; i++) {
 		if(File.isDirectory(input + File.separator + list[i]))
 			processFolder(input + File.separator + list[i]);
-		else if(endsWith(list[i], suffix)){n=n+1;
-			processFile(input, output, list[i],n);}
+		else if(endsWith(list[i], suffix)){
+			n=n+1;
+			processFile(input, output, list[i],n);
+		}
 	}
 }
 
 function processFile(input, output, file,index) {
-	// Do the processing here by adding your own code.
-	
-	// Leave the print statements until things work, then remove them.
 	print("Processing: " + input + File.separator + file);
-	print("Saving to: " + output);
+	print("Saving to: " + output);//Just export the result to the log for checking.
+	//You can replace the following code by the the content in the macro recoder. 
 	open(input + File.separator + file);
 	run("32-bit");
 	close("");
@@ -34,7 +32,9 @@ function processFile(input, output, file,index) {
 	//run("Threshold...");
 	run("Set Measurements...", "display area mean standard modal min integrated limit redirect=None decimal=3");
 	run("Measure");	
-	setResult("File Name", index, file);
+	
+	//Save the result to an excel file
+	setResult("File Name", index, file); //You can DIY the result columns
 	saveAs("Results", output+File.separator +"Results.xls");
 	close("*");
 }
