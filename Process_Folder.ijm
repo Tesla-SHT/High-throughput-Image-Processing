@@ -14,8 +14,6 @@ processFolder(input);
 function processFolder(input) {
     // Get a list of files in the input directory
     list = getFileList(input);
-    // Sort the list of files alphabetically
-    list = Array.sort(list);
     // Iterate through the list of files
     for (i = 0; i < list.length; i++) {
         // Check if the current item is a directory
