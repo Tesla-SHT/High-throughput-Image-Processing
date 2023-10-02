@@ -20,8 +20,12 @@ This is one of the software made by westlake-china team in the iGEM competition.
   #@ String (label = "File suffix", value = ".tif") suffix
   #@ String (label = "Keyword", value = "keyword") keyword
 ```
-![image](https://github.com/Tesla-SHT/Mean-Fluorescence-Intensity/assets/109467147/293f3c51-431c-4573-bb6b-197a4545c7a9)
+<div align=center>
+<img src = "https://github.com/Tesla-SHT/Mean-Fluorescence-Intensity/assets/109467147/293f3c51-431c-4573-bb6b-197a4545c7a9" alt = "input interface" style = "padding-left:25%; width:50%;"/>
+</div>
+
 2. After initialization, we will first start file processing, that is, finding every file in the specific folder (having subfolders) with the correct suffix and keyword.
+
 ```Java
 // Initialize a counter for processed files
 n = 0;
