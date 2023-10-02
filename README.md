@@ -1,11 +1,9 @@
-# Mean-Fluorescence-Intensity
+# High-throughput Image Processing
+### Background
+Although our starting point was a quantitative analysis of antibodies bound to the cell, actually, the study of fluorescence intensity can also be used to quantify protein expression levels, examine changes in cellular processes, and compare signal intensities between different samples or experimental conditions.  Our project involves validating antibody-cell connections in cell experiments by observing confocal fluorescence intensity. Considering that confocal analysis is a widely used technique in current research, and standardization of confocal data image processing often involves repetitive selection steps to calculate average fluorescence intensity.
+
 ### Introduction
-Our project involves validating antibody-cell connections in cell experiments by observing confocal fluorescence intensity. Considering that confocal analysis is a widely used technique in current research, and standardization of confocal data image processing often involves repetitive selection steps to calculate average fluorescence intensity. Consequently, we have developed a software specifically designed for high-throughput analysis of confocal image fluorescence intensity, inspired by the tedious data processing in wet lab experiments. This script provides the high throughput processing of TIF images using macro language in Fiji.
-
-With our program, we can directly perform automatic normalization and statistical analysis of fluorescence intensity for all images in a given folder, significantly reducing repetitive workload and streamlining the process.
-
-Although our starting point was a quantitative analysis of antibodies bound to the cell, actually, the study of fluorescence intensity can also be used to quantify protein expression levels, examine changes in cellular processes, and compare signal intensities between different samples or experimental conditions.
-This is one of the software made by westlake-china team in the iGEM competition. The script provides high throughput processing of TIF images using macro language in Fiji.
+We have developed a script specifically designed for high-throughput analysis of confocal image fluorescence intensity, inspired by the tedious data processing in wet lab experiments. This script provides the high throughput processing of TIF images using macro language in Fiji.  With our program, we can directly perform automatic normalization and statistical analysis of fluorescence intensity for all images in a given folder, significantly reducing repetitive workload and streamlining the process. Actually, you can change the core codes with different functions in this high-throughput frame.
 
 ### Startup
 1. Download Fiji via https://imagej.net/software/fiji/downloads.
@@ -49,5 +47,25 @@ function processFolder(input) {
             n = n + 1;
         }
     }
+}
+```
+
+3. Now we can just process every single image and measure their Mean Fluorescence Intensity! (Of course, you can DIY everything just using the recorder in ImageJ.
+```Java
+function processFile(input, output, file, index) {
+
+    print("Processing: " + input + File.separator + file);
+    print("Saving to: " + output);
+    open(input + File.separator + file);
+    // You can simply copy the commands in recorder
+    run("32-bit");
+    close("");
+    setAutoThreshold("Default dark no-reset");
+    //run("Threshold...");
+    run("Set Measurements...", "display area mean standard modal min integrated limit redirect=None decimal=3");
+    run("Measure");
+    setResult("File Name", index, file);
+    saveAs("Results", output + File.separator + "Results.xls");
+    close("*");
 }
 ```
