@@ -57,7 +57,7 @@ function processFile(input, output, file, index) {
     print("Processing: " + input + File.separator + file);
     print("Saving to: " + output);
     open(input + File.separator + file);
-    // You can simply copy the commands in recorder
+    // You can simply copy the commands from the recorder to replace the following code
     run("32-bit");
     close("");
     setAutoThreshold("Default dark no-reset");
@@ -69,3 +69,15 @@ function processFile(input, output, file, index) {
     close("*");
 }
 ```
+
+4. Methods of DIY
+- Firstly, you should open the recorder to see what you will do in the form of Macro.
+<div align=center>
+<img src = "https://github.com/Tesla-SHT/Mean-Fluorescence-Intensity/assets/109467147/f9c54063-6c32-406b-b942-70e3596fd37e" alt = "input interface" style = "padding-left:25%; width:50%;"/>
+</div>
+- Remember to choose Macro language.
+<div align=center>
+<img src = "https://github.com/Tesla-SHT/Mean-Fluorescence-Intensity/assets/109467147/8050016f-0719-4c85-ab8d-d394bc7639a1" alt = "input interface" style = "padding-left:25%; width:50%;"/>
+</div>
+- Now you can perform your measurement and every step will be recorded!
+
